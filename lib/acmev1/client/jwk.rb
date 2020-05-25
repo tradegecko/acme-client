@@ -16,6 +16,6 @@ module AcmeV1::Client::JWK
   end
 end
 
-require 'acme/client/jwk/base'
-require 'acme/client/jwk/rsa'
-require 'acme/client/jwk/ecdsa'
+require 'acmev1/client/jwk/base'
+require 'acmev1/client/jwk/rsa'
+require 'acmev1/client/jwk/ecdsa'

@@ -11,15 +11,15 @@ require 'time'
 module AcmeV1; end
 class AcmeV1::Client; end
 
-require 'acme/client/version'
-require 'acme/client/certificate'
-require 'acme/client/certificate_request'
-require 'acme/client/self_sign_certificate'
-require 'acme/client/resources'
-require 'acme/client/faraday_middleware'
-require 'acme/client/jwk'
-require 'acme/client/error'
-require 'acme/client/util'
+require 'acmev1/client/version'
+require 'acmev1/client/certificate'
+require 'acmev1/client/certificate_request'
+require 'acmev1/client/self_sign_certificate'
+require 'acmev1/client/resources'
+require 'acmev1/client/faraday_middleware'
+require 'acmev1/client/jwk'
+require 'acmev1/client/error'
+require 'acmev1/client/util'
 
 class AcmeV1::Client
   DEFAULT_ENDPOINT = 'http://127.0.0.1:4000'.freeze

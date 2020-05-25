@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift File.join(__dir__, '../lib')
 $LOAD_PATH.unshift File.join(__dir__, 'support')
 
-require 'acme/client'
+require 'acmev1/client'
 
 require 'rspec'
 require 'vcr'

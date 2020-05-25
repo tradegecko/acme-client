@@ -13,7 +13,7 @@ def `(command)
   end
 end
 
-`git add lib/acme/client/version.rb`
+`git add lib/acmev1/client/version.rb`
 `git commit -m "bump to #{version}"`
 `git pull --rebase origin master`
 `git tag 'v#{version}'`

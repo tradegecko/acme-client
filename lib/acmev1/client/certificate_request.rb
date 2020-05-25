@@ -118,4 +118,4 @@ class AcmeV1::Client::CertificateRequest
   end
 end
 
-require 'acme/client/certificate_request/ec_key_patch'
+require 'acmev1/client/certificate_request/ec_key_patch'
