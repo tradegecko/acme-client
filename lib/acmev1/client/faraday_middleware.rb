@@ -3,7 +3,7 @@
 class AcmeV1::Client::FaradayMiddleware < Faraday::Middleware
   attr_reader :env, :response, :client
 
-  repo_url = 'https://github.com/unixcharles/acmev1-client'
+  repo_url = 'https://github.com/tradegecko/acme-client'
   USER_AGENT = "AcmeV1::Client v#{AcmeV1::Client::VERSION} (#{repo_url})".freeze
 
   def initialize(app, client:)
