@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Acme::Client::Resources::Challenges::TLSSNI01 < Acme::Client::Resources::Challenges::Base
+class AcmeV1::Client::Resources::Challenges::TLSSNI01 < AcmeV1::Client::Resources::Challenges::Base
   CHALLENGE_TYPE = 'tls-sni-01'.freeze
   DIGEST = OpenSSL::Digest::SHA256
 
@@ -20,6 +20,6 @@ class Acme::Client::Resources::Challenges::TLSSNI01 < Acme::Client::Resources::C
   private
 
   def self_sign_certificate
-    @self_sign_certificate ||= Acme::Client::SelfSignCertificate.new(subject_alt_names: [hostname])
+    @self_sign_certificate ||= AcmeV1::Client::SelfSignCertificate.new(subject_alt_names: [hostname])
   end
 end

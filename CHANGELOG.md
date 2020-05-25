@@ -37,11 +37,11 @@
 
 ## `0.5.0`
 
-* Allow access to `Acme::Client#endpoint` and `Acme::Client#directory_uri`
-* Add `Acme::Client#fetch_authorization`
+* Allow access to `AcmeV1::Client#endpoint` and `AcmeV1::Client#directory_uri`
+* Add `AcmeV1::Client#fetch_authorization`
 * Setup cyclic dependency between challenges and their authorization for easier access of either with the other.
-* Drop `Acme::Client#challenge_from_hash` and `Acme::Client::Resources::Challenges::Base#to_h` in favor of the new API.
-* Delegate `Acme::Client::Resources::Challenges::Base#verify_status` to `Acme::Client::Resources::Authorization#verify_status` and make it update existing challenge objects. This makes it so that whichever is called, the correct status is reflected everywhere.
+* Drop `AcmeV1::Client#challenge_from_hash` and `AcmeV1::Client::Resources::Challenges::Base#to_h` in favor of the new API.
+* Delegate `AcmeV1::Client::Resources::Challenges::Base#verify_status` to `AcmeV1::Client::Resources::Authorization#verify_status` and make it update existing challenge objects. This makes it so that whichever is called, the correct status is reflected everywhere.
 * Add `Authorization#verify_status` - Recent versions of boulder will no longer process a challenge if the associated authorization is already valid, that is another challenge was previously solved. This means we need to allow people to poll on the authorizations status rather than the challenge status so they don't have to poll on the status of all challenges of an authorization all the time. See https://community.letsencrypt.org/t/upcoming-change-valid-authz-reuse/16982 and https://github.com/letsencrypt/boulder/issues/2057
 
 ## `0.4.1`
@@ -73,7 +73,7 @@
 
 ## `0.3.4`
 
-* Make `Acme::Client#challenge_from_hash` more strict with the arguments it receives
+* Make `AcmeV1::Client#challenge_from_hash` more strict with the arguments it receives
 
 ## `0.3.3`
 
@@ -105,5 +105,5 @@
 ## `0.2.3`
 
 * Support certificate revocation
-* Move everything under the `Acme::Client` namespace
+* Move everything under the `AcmeV1::Client` namespace
 * Improved errors

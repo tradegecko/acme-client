@@ -1,4 +1,4 @@
-module Acme::Client::Resources::Challenges; end
+module AcmeV1::Client::Resources::Challenges; end
 
 require 'acme/client/resources/challenges/base'
 require 'acme/client/resources/challenges/http01'

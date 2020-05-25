@@ -4,7 +4,7 @@ require 'acme/client/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'acme-client'
-  spec.version       = Acme::Client::VERSION
+  spec.version       = AcmeV1::Client::VERSION
   spec.authors       = ['Charles Barbier']
   spec.email         = ['unixcharles@gmail.com']
   spec.summary       = 'Client for the ACME protocol.'

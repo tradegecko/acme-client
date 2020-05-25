@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Acme::Client::Resources::Challenges::TLSSNI01 do
+describe AcmeV1::Client::Resources::Challenges::TLSSNI01 do
   let(:tls_sni01) do
-    client = Acme::Client.new(private_key: generate_private_key)
+    client = AcmeV1::Client.new(private_key: generate_private_key)
     registration = client.register(contact: 'mailto:info@example.com')
     registration.agree_terms
     authorization = client.authorize(domain: "test#{rand(10 * 10)}.example.org")
@@ -32,7 +32,7 @@ describe Acme::Client::Resources::Challenges::TLSSNI01 do
     end
 
     it 'fail to verify the challenge and return the status', vcr: { cassette_name: 'tls_sni01_verify_failure' } do
-      self_sign = Acme::Client::SelfSignCertificate.new(subject_alt_names: ['fail.example.com'])
+      self_sign = AcmeV1::Client::SelfSignCertificate.new(subject_alt_names: ['fail.example.com'])
 
       listen_tls(self_sign.certificate, self_sign.private_key) do
         expect {

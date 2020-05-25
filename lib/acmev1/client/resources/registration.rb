@@ -1,4 +1,4 @@
-class Acme::Client::Resources::Registration
+class AcmeV1::Client::Resources::Registration
   attr_reader :id, :key, :contact, :uri, :next_uri, :recover_uri, :term_of_service_uri
 
   def initialize(client, response)

@@ -8,8 +8,8 @@ require 'forwardable'
 require 'base64'
 require 'time'
 
-module Acme; end
-class Acme::Client; end
+module AcmeV1; end
+class AcmeV1::Client; end
 
 require 'acme/client/version'
 require 'acme/client/certificate'
@@ -21,7 +21,7 @@ require 'acme/client/jwk'
 require 'acme/client/error'
 require 'acme/client/util'
 
-class Acme::Client
+class AcmeV1::Client
   DEFAULT_ENDPOINT = 'http://127.0.0.1:4000'.freeze
   DIRECTORY_DEFAULT = {
     'new-authz' => '/acme/new-authz',
@@ -38,7 +38,7 @@ class Acme::Client
     @jwk = if jwk
       jwk
     else
-      Acme::Client::JWK.from_private_key(private_key)
+      AcmeV1::Client::JWK.from_private_key(private_key)
     end
 
     @endpoint, @directory_uri, @connection_options = endpoint, directory_uri, connection_options
@@ -54,7 +54,7 @@ class Acme::Client
     }
 
     response = connection.post(@operation_endpoints.fetch('new-reg'), payload)
-    ::Acme::Client::Resources::Registration.new(self, response)
+    ::AcmeV1::Client::Resources::Registration.new(self, response)
   end
 
   def authorize(domain:)
@@ -67,12 +67,12 @@ class Acme::Client
     }
 
     response = connection.post(@operation_endpoints.fetch('new-authz'), payload)
-    ::Acme::Client::Resources::Authorization.new(self, response.headers['Location'], response)
+    ::AcmeV1::Client::Resources::Authorization.new(self, response.headers['Location'], response)
   end
 
   def fetch_authorization(uri)
     response = connection.get(uri)
-    ::Acme::Client::Resources::Authorization.new(self, uri, response)
+    ::AcmeV1::Client::Resources::Authorization.new(self, uri, response)
   end
 
   def new_certificate(csr)
@@ -82,7 +82,7 @@ class Acme::Client
     }
 
     response = connection.post(@operation_endpoints.fetch('new-cert'), payload)
-    ::Acme::Client::Certificate.new(OpenSSL::X509::Certificate.new(response.body), response.headers['location'], fetch_chain(response), csr)
+    ::AcmeV1::Client::Certificate.new(OpenSSL::X509::Certificate.new(response.body), response.headers['location'], fetch_chain(response), csr)
   end
 
   def revoke_certificate(certificate)
@@ -99,7 +99,7 @@ class Acme::Client
 
   def connection
     @connection ||= Faraday.new(@endpoint, **@connection_options) do |configuration|
-      configuration.use Acme::Client::FaradayMiddleware, client: self
+      configuration.use AcmeV1::Client::FaradayMiddleware, client: self
       configuration.adapter Faraday.default_adapter
     end
   end
