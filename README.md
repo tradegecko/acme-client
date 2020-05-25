@@ -4,9 +4,9 @@ This branch track the client for ACMEv1.
 
 # AcmeV1::Client
 
-[![Build Status](https://travis-ci.org/unixcharles/acme-client.svg?branch=master)](https://travis-ci.org/unixcharles/acme-client)
+[![Build Status](https://travis-ci.org/unixcharles/acmev1-client.svg?branch=master)](https://travis-ci.org/unixcharles/acmev1-client)
 
-`acme-client` is a client implementation of the [ACME](https://github.com/ietf-wg-acme/acme/) protocol in Ruby.
+`acmev1-client` is a client implementation of the [ACME](https://github.com/ietf-wg-acme/acme/) protocol in Ruby.
 
 You can find the ACME reference implementations of the [server](https://github.com/letsencrypt/boulder) in Go and the [client](https://github.com/letsencrypt/letsencrypt) in Python.
 
@@ -16,12 +16,12 @@ ACME is part of the [Letsencrypt](https://letsencrypt.org/) project, which goal 
 
 Via RubyGems:
 
-    $ gem install acme-client
+    $ gem install acmev1-client
 
 Or add it to a Gemfile:
 
 ```ruby
-gem 'acme-client'
+gem 'acmev1-client'
 ```
 
 ## Usage
@@ -42,7 +42,7 @@ private_key = OpenSSL::PKey::RSA.new(4096)
 endpoint = 'https://acme-v01.api.letsencrypt.org/'
 
 # Initialize the client
-require 'acme-client'
+require 'acmev1-client'
 client = AcmeV1::Client.new(private_key: private_key, endpoint: endpoint, connection_options: { request: { open_timeout: 5, timeout: 5 } })
 
 # If the private key is not known to the server, we need to register it for the first time.
