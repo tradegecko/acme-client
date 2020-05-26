@@ -1,4 +1,4 @@
-class Acme::Client::Resources::Challenges::Base
+class AcmeV1::Client::Resources::Challenges::Base
   attr_reader :authorization, :status, :uri, :token, :error
 
   def initialize(authorization)

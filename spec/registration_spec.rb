@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Acme::Client::Resources::Registration do
-  let(:client) { Acme::Client.new(private_key: generate_private_key) }
+describe AcmeV1::Client::Resources::Registration do
+  let(:client) { AcmeV1::Client.new(private_key: generate_private_key) }
   let(:registration) { client.register(contact: 'mailto:info@example.com') }
 
   context '#agree_terms' do

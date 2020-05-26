@@ -1,7 +1,7 @@
-class Acme::Client::Resources::Authorization
-  HTTP01 = Acme::Client::Resources::Challenges::HTTP01
-  DNS01 = Acme::Client::Resources::Challenges::DNS01
-  TLSSNI01 = Acme::Client::Resources::Challenges::TLSSNI01
+class AcmeV1::Client::Resources::Authorization
+  HTTP01 = AcmeV1::Client::Resources::Challenges::HTTP01
+  DNS01 = AcmeV1::Client::Resources::Challenges::DNS01
+  TLSSNI01 = AcmeV1::Client::Resources::Challenges::TLSSNI01
 
   attr_reader :client, :uri, :domain, :status, :expires, :http01, :dns01, :tls_sni01
 

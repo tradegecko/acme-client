@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class Acme::Client::FaradayMiddleware < Faraday::Middleware
+class AcmeV1::Client::FaradayMiddleware < Faraday::Middleware
   attr_reader :env, :response, :client
 
-  repo_url = 'https://github.com/unixcharles/acme-client'
-  USER_AGENT = "Acme::Client v#{Acme::Client::VERSION} (#{repo_url})".freeze
+  repo_url = 'https://github.com/tradegecko/acme-client'
+  USER_AGENT = "AcmeV1::Client v#{AcmeV1::Client::VERSION} (#{repo_url})".freeze
 
   def initialize(app, client:)
     super(app)
@@ -17,7 +17,7 @@ class Acme::Client::FaradayMiddleware < Faraday::Middleware
     @env.body = client.jwk.jws(header: { nonce: pop_nonce }, payload: env.body)
     @app.call(env).on_complete { |response_env| on_complete(response_env) }
   rescue Faraday::TimeoutError, Faraday::ConnectionFailed
-    raise Acme::Client::Error::Timeout
+    raise AcmeV1::Client::Error::Timeout
   end
 
   def on_complete(env)
@@ -36,7 +36,7 @@ class Acme::Client::FaradayMiddleware < Faraday::Middleware
   private
 
   def raise_on_not_found!
-    raise Acme::Client::Error::NotFound, env.url.to_s if env.status == 404
+    raise AcmeV1::Client::Error::NotFound, env.url.to_s if env.status == 404
   end
 
   def raise_on_error!
@@ -52,10 +52,10 @@ class Acme::Client::FaradayMiddleware < Faraday::Middleware
   end
 
   def error_class
-    if error_name && !error_name.empty? && Acme::Client::Error.const_defined?(error_name)
-      Object.const_get("Acme::Client::Error::#{error_name}")
+    if error_name && !error_name.empty? && AcmeV1::Client::Error.const_defined?(error_name)
+      Object.const_get("AcmeV1::Client::Error::#{error_name}")
     else
-      Acme::Client::Error
+      AcmeV1::Client::Error
     end
   end
 

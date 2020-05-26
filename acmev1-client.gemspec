@@ -1,14 +1,14 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'acme/client/version'
+require 'acmev1/client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'acme-client'
-  spec.version       = Acme::Client::VERSION
-  spec.authors       = ['Charles Barbier']
-  spec.email         = ['unixcharles@gmail.com']
+  spec.name          = 'acmev1-client'
+  spec.version       = AcmeV1::Client::VERSION
+  spec.authors       = ['TradeGecko']
+  spec.email         = ['developer@tradegecko.com']
   spec.summary       = 'Client for the ACME protocol.'
-  spec.homepage      = 'http://github.com/unixcharles/acme-client'
+  spec.homepage      = 'http://github.com/tradegecko/acme-client'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

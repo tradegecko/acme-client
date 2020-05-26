@@ -2,11 +2,11 @@
 
 This branch track the client for ACMEv1.
 
-# Acme::Client
+# AcmeV1::Client
 
-[![Build Status](https://travis-ci.org/unixcharles/acme-client.svg?branch=master)](https://travis-ci.org/unixcharles/acme-client)
+[![Build Status](https://travis-ci.org/unixcharles/acmev1-client.svg?branch=master)](https://travis-ci.org/unixcharles/acmev1-client)
 
-`acme-client` is a client implementation of the [ACME](https://github.com/ietf-wg-acme/acme/) protocol in Ruby.
+`acmev1-client` is a client implementation of the [ACME](https://github.com/ietf-wg-acme/acme/) protocol in Ruby.
 
 You can find the ACME reference implementations of the [server](https://github.com/letsencrypt/boulder) in Go and the [client](https://github.com/letsencrypt/letsencrypt) in Python.
 
@@ -16,12 +16,12 @@ ACME is part of the [Letsencrypt](https://letsencrypt.org/) project, which goal 
 
 Via RubyGems:
 
-    $ gem install acme-client
+    $ gem install acmev1-client
 
 Or add it to a Gemfile:
 
 ```ruby
-gem 'acme-client'
+gem 'acmev1-client'
 ```
 
 ## Usage
@@ -42,8 +42,8 @@ private_key = OpenSSL::PKey::RSA.new(4096)
 endpoint = 'https://acme-v01.api.letsencrypt.org/'
 
 # Initialize the client
-require 'acme-client'
-client = Acme::Client.new(private_key: private_key, endpoint: endpoint, connection_options: { request: { open_timeout: 5, timeout: 5 } })
+require 'acmev1-client'
+client = AcmeV1::Client.new(private_key: private_key, endpoint: endpoint, connection_options: { request: { open_timeout: 5, timeout: 5 } })
 
 # If the private key is not known to the server, we need to register it for the first time.
 registration = client.register(contact: 'mailto:contact@example.com')
@@ -64,7 +64,7 @@ authorization = client.authorize(domain: 'example.org')
 authorization.status # => 'pending'
 
 # You can can store the authorization's URI to fully recover it and
-# any associated challenges via Acme::Client#fetch_authorization.
+# any associated challenges via AcmeV1::Client#fetch_authorization.
 authorization.uri # => '...'
 
 # This example is using the http-01 challenge type. Other challenges are dns-01 or tls-sni-01.
@@ -127,12 +127,12 @@ Now that your account is authorized for the domain, you should be able to obtain
 ```ruby
 # We're going to need a certificate signing request. If not explicitly
 # specified, the first name listed becomes the common name.
-csr = Acme::Client::CertificateRequest.new(names: %w[example.org www.example.org])
+csr = AcmeV1::Client::CertificateRequest.new(names: %w[example.org www.example.org])
 
 # We can now request a certificate. You can pass anything that returns
 # a valid DER encoded CSR when calling to_der on it. For example an
 # OpenSSL::X509::Request should work too.
-certificate = client.new_certificate(csr) # => #<Acme::Client::Certificate ....>
+certificate = client.new_certificate(csr) # => #<AcmeV1::Client::Certificate ....>
 
 # Save the certificate and the private key to files
 File.write("privkey.pem", certificate.request.private_key.to_pem)

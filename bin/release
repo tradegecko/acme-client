@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
-require 'acme-client'
+require 'acmev1-client'
 
-version = Acme::Client::VERSION
+version = AcmeV1::Client::VERSION
 
 def `(command)
   puts super(command)
@@ -13,11 +13,11 @@ def `(command)
   end
 end
 
-`git add lib/acme/client/version.rb`
+`git add lib/acmev1/client/version.rb`
 `git commit -m "bump to #{version}"`
 `git pull --rebase origin master`
 `git tag 'v#{version}'`
 `git push --tags origin master`
-`gem build acme-client.gemspec`
-`gem push acme-client-#{version}.gem`
-`rm acme-client-#{version}.gem`
+`gem build acmev1-client.gemspec`
+`gem push acmev1-client-#{version}.gem`
+`rm acmev1-client-#{version}.gem`

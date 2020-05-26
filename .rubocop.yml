@@ -9,7 +9,7 @@ Rails:
 
 Naming/FileName:
   Exclude:
-    - 'lib/acme-client.rb'
+    - 'lib/acmev1-client.rb'
 
 Lint/AssignmentInCondition:
   Enabled: false
